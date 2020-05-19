@@ -12,6 +12,8 @@ namespace UnitTests
         {
             var a = new Calendars.Date();
             var b = a.IsValid();
+            var d2 = a.ConvertTo(Date.CalendarType.IslamicCivil);
+
         }
     }
 }

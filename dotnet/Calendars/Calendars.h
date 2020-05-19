@@ -36,7 +36,7 @@ namespace Calendars {
 				_type = value;
 			}
 		}
-		property int year {
+		property int Year {
 			int get() {
 				return _year;
 			}
@@ -44,7 +44,7 @@ namespace Calendars {
 				_year = value;
 			}
 		};
-		property int month {
+		property int Month {
 			int get() {
 				return _month;
 			}
@@ -52,7 +52,7 @@ namespace Calendars {
 				_month = value;
 			}
 		};
-		property int day {
+		property int Day {
 			int get() {
 				return _day;
 			}
@@ -62,14 +62,15 @@ namespace Calendars {
 		};
 
 		Date();
-		
+		Date(CalendarType type, int julianDay);
 		Date(CalendarType type, int year, int month, int day);
 
 		bool IsValid();
 		bool IsLeap();
+		int ToJulianDay();
 		static int DaysInMonth(CalendarType type, int year, int month);
 		static int DaysInYear(CalendarType type, int year);
-		int MonthsInYear(CalendarType type, int year);
+		static int MonthsInYear(CalendarType type, int year);
 
 		Date ^ConvertTo(CalendarType type);
 	};

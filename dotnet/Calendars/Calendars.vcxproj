@@ -160,8 +160,8 @@
     <Image Include="app.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\win32\libcalendars\libcalendars.vcxproj">
-      <Project>{d20a5f03-badf-4e9e-8f8f-b12a6e748fa7}</Project>
+    <ProjectReference Include="..\LibCalendars\LibCalendars.vcxproj">
+      <Project>{c8299634-dda4-4a37-86d3-04b667539daa}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

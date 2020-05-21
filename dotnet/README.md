@@ -37,22 +37,28 @@ Date(CalendarType type, int year, int month, int day);
 
 ### Member functions
 **bool IsValid()**
+
 Checks if a givend date is valid is specified calendar or not (exists, or fits in calendar rules).
 
 **bool IsLeap()**
- Decide wheter a given year number in a specified calendar is a leap year (have some extra number of month or days) or not.
+
+Decide wheter a given year number in a specified calendar is a leap year (have some extra number of month or days) or not.
 
 **Date ConvertTo(CalendarType type)**
+
 Convert current Date object into new object by given year for specified calendar type.
 
 
 ### Static methods
 **int DaysInMonth(CalendarType type, int year, int month)**
+
 Returns number of days in a given year for specified calendar type.
 
 **int DaysInYear(CalendarType type, int year)**
+
 Returns number of days of a specific month in a given year for specified calendar type.
 
 **int MonthsInYear(CalendarType type, int year)**
+
 Returns number of month in a given year for specified calendar type.
 

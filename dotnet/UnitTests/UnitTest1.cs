@@ -22,7 +22,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void DateTime()
+        public void DateTimeConvert()
         {
             var dateTime = new DateTime();
             var d2 = new Calendars.Date(dateTime);
@@ -34,9 +34,17 @@ namespace UnitTests
         [TestMethod]
         public void Ctor()
         {
-            var date = new System.DateTime();
+            var date = DateTime.Now;
             var d = new Calendars.Date();
             Assert.AreEqual(date.Date, d.ToDate().Date);
         }
+
+        [TestMethod]
+        public void Cast()
+        {
+            Calendars.Date dd = (Calendars.Date)DateTime.Now;
+            Assert.AreEqual(DateTime.Now.Date, dd.ToDate().Date);
+        }
     }
+        
 }

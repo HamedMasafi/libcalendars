@@ -6,21 +6,40 @@
 
 #include "../../src/cl-calendars.h"
 
-inline Calendars::Date::Date() : Date(gcnew System::DateTime)
+inline Calendars::Date::Date() : Date(Calendars::Date::CalendarType::Gregorian, System::DateTime::Now)
 {
-	auto date = gcnew System::DateTime;
+	System::DateTime ^date = System::DateTime::Now;
 	_type = CalendarType::Gregorian;
 	_year = date->Year;
 	_month = date->Month;
 	_day = date->Day;
 }
 
-Calendars::Date::Date(System::DateTime ^date)
+Calendars::Date::Date(System::DateTime date) : Date(Calendars::Date::CalendarType::Gregorian, date)
 {
-	_type = CalendarType::Gregorian;
-	_year = date->Year;
-	_month = date->Month;
-	_day = date->Day;
+}
+
+Calendars::Date::Date(CalendarType type, System::DateTime date)
+{
+	_type = type;
+	if (type == Calendars::Date::CalendarType::Gregorian) 
+	{
+		_year = date.Year;
+		_month = date.Month;
+		_day = date.Day;
+	}
+	else
+	{
+		int16_t y;
+		uint8_t m;
+		uint16_t d;
+		convert_date(CAL_GREGORIAN, uint8_t(type),
+			int16_t(date.Year), uint8_t(date.Month), uint16_t(date.Day),
+			&y, &m, &d);
+		_year = y;
+		_month = m;
+		_day = d;
+	}
 }
 
 Calendars::Date::Date(CalendarType type, int julianDay)
@@ -44,7 +63,7 @@ inline bool Calendars::Date::IsValid() {
 
 bool Calendars::Date::IsLeap()
 {
-	return is_leap(uint8_t(_type), _year);
+	return is_leap(uint8_t(_type), _year) != 0;
 }
 
 int Calendars::Date::ToJulianDay()
@@ -67,6 +86,11 @@ int Calendars::Date::DaysInYear(CalendarType type, int year)
 int Calendars::Date::MonthsInYear(CalendarType type, int year)
 {
 	return month_in_year(uint8_t(type), year);
+}
+
+Calendars::Date::operator Date^(System::DateTime date)
+{
+	return gcnew Date(date);
 }
 
 System::DateTime Calendars::Date::ToDate()

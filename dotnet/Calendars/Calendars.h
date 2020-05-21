@@ -62,7 +62,8 @@ namespace Calendars {
 		};
 
 		Date();
-		Date(System::DateTime ^date);
+		Date(System::DateTime date);
+		Date(CalendarType type, System::DateTime date);
 		Date(CalendarType type, int julianDay);
 		Date(CalendarType type, int year, int month, int day);
 
@@ -72,6 +73,7 @@ namespace Calendars {
 		static int DaysInMonth(CalendarType type, int year, int month);
 		static int DaysInYear(CalendarType type, int year);
 		static int MonthsInYear(CalendarType type, int year);
+		static operator Date^(System::DateTime);
 
 		DateTime ToDate();
 		Date^ ConvertTo(CalendarType type);
